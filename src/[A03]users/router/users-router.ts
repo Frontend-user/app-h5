@@ -31,6 +31,7 @@ export const usersRouter = Router({})
 usersRouter.get('/',
     authorizationMiddleware,
     async (req: Request, res: Response) => {
+    console.log(req.query,'FILTER QUERY!!!!!!!!!!!!!!!!!!!!!!')
         try {
             let searchLoginTerm = req.query.searchLoginTerm ? String(req.query.searchLoginTerm): undefined
             let searchEmailTerm = req.query.searchEmailTerm ? String(req.query.searchEmailTerm): undefined

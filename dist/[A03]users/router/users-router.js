@@ -27,6 +27,7 @@ const usersValidators = [
 ];
 exports.usersRouter = (0, express_1.Router)({});
 exports.usersRouter.get('/', auth_validation_1.authorizationMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.query, 'FILTER QUERY!!!!!!!!!!!!!!!!!!!!!!');
     try {
         let searchLoginTerm = req.query.searchLoginTerm ? String(req.query.searchLoginTerm) : undefined;
         let searchEmailTerm = req.query.searchEmailTerm ? String(req.query.searchEmailTerm) : undefined;
