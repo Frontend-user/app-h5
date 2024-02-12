@@ -31,7 +31,7 @@ export const usersQueryRepository = {
             "pagesCount": pagesCount,
             "page": pageNumber,
             "pageSize": pageSize,
-            "totalCount": users.length,
+            "totalCount": allUsers.length,
             "items": fixArrayIds
         }
 

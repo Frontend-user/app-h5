@@ -34,7 +34,7 @@ exports.usersQueryRepository = {
                 "pagesCount": pagesCount,
                 "page": pageNumber,
                 "pageSize": pageSize,
-                "totalCount": users.length,
+                "totalCount": allUsers.length,
                 "items": fixArrayIds
             };
             return response;
