@@ -15,7 +15,7 @@ export const blogsQueryRepository = {
         const {skip, limit, newPageNumber, newPageSize} = blogsPaginate.getPagination(pageNumber, pageSize)
         let blogs: BlogEntityType[] = await blogsCollection.find(findQuery).sort(sortQuery).skip(skip).limit(limit).toArray();
         const allBlogs = await blogsCollection.find(findQuery).sort(sortQuery).toArray()
-        let pagesCount = Math.ceil(allBlogs.length / newPageNumber)
+        let pagesCount = Math.ceil(allBlogs.length / newPageSize)
 
 
         const fixArrayIds: BlogViewType[] = blogs.map((item => this.__changeIdFormat(item)))

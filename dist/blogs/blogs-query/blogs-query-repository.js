@@ -23,7 +23,7 @@ exports.blogsQueryRepository = {
             const { skip, limit, newPageNumber, newPageSize } = blogs_paginate_1.blogsPaginate.getPagination(pageNumber, pageSize);
             let blogs = yield db_1.blogsCollection.find(findQuery).sort(sortQuery).skip(skip).limit(limit).toArray();
             const allBlogs = yield db_1.blogsCollection.find(findQuery).sort(sortQuery).toArray();
-            let pagesCount = Math.ceil(allBlogs.length / newPageNumber);
+            let pagesCount = Math.ceil(allBlogs.length / newPageSize);
             const fixArrayIds = blogs.map((item => this.__changeIdFormat(item)));
             const response = {
                 "pagesCount": pagesCount,
