@@ -29,10 +29,13 @@ exports.authService = {
                 if (newPasswordHash === passwordHash) {
                     return true;
                 }
-                else
+                else {
                     return false;
+                }
             }
-            return false;
+            else {
+                return false;
+            }
         });
     }
 };

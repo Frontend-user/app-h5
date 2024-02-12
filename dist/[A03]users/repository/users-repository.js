@@ -20,7 +20,15 @@ exports.usersRepositories = {
     },
     deleteUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            const users = yield db_1.usersCollection.find({}).toArray();
+            console.log(users, 'users');
+            console.log(users.length, 'users');
             const response = yield db_1.usersCollection.deleteOne({ _id: id });
+            const usersAfterDelete = yield db_1.usersCollection.find({}).toArray();
+            const usersToDelete = yield db_1.usersCollection.findOne({ _id: id });
+            console.log(usersAfterDelete, 'usersAfterDelete');
+            console.log(usersAfterDelete.length, 'usersAfterDelete');
+            console.log(usersToDelete, 'usersToDelete');
             return !!response.deletedCount;
         });
     }

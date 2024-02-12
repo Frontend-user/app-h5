@@ -17,8 +17,12 @@ export const authService = {
             // console.log(')newPasswordHash',newPasswordHash)
             if (newPasswordHash === passwordHash) {
                 return true
-            } else return false
+            } else {
+                return false
+            }
+        } else {
+            return false
+
         }
-        return false
     }
 }
