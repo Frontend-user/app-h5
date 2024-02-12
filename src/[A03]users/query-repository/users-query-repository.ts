@@ -6,8 +6,8 @@ import {ObjectId} from "mongodb";
 import {QueryFindType} from "../../[A01]blogs/blogs-query/models/query-types";
 
 export const usersQueryRepository = {
-    async getUsers(searchNameTerm?: string, sortBy?: string, sortDirection?: string, pageNumber?: number, pageSize?: number) {
-        const findQuery = this.__getUsersFindings(searchNameTerm)
+    async getUsers(searchLoginTerm?: string, searchEmailTerm?: string, sortBy?: string, sortDirection?: string, pageNumber?: number, pageSize?: number) {
+        const findQuery = this.__getUsersFindings(searchLoginTerm,searchEmailTerm)
         const sortQuery = blogsSorting.getSorting(sortBy, sortDirection)
         const paginateQuery = blogsPaginate.getPagination(pageNumber, pageSize)
         let users: UserHashType[] = await usersCollection.find(findQuery).sort(sortQuery).skip(paginateQuery.skip).limit(paginateQuery.limit).toArray();
@@ -49,10 +49,10 @@ export const usersQueryRepository = {
         return obj
     },
 
-    __getUsersFindings(searchNameTerm?:string){
+    __getUsersFindings(searchLoginTerm?:string, searchEmailTerm?:string){
         let findQuery: any = {}
-        if (searchNameTerm) {
-            findQuery =  { $or: [  {login:  {$regex: searchNameTerm, $options: 'i'}}, {email:  {$regex: searchNameTerm, $options: 'i'}}]};
+        if (searchLoginTerm || searchEmailTerm) {
+            findQuery =  { $or: [  {login:  {$regex: searchLoginTerm , $options: 'i'}}, {email:  {$regex: searchEmailTerm, $options: 'i'}}]};
         }
         return findQuery
     },

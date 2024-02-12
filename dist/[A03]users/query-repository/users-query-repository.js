@@ -14,9 +14,9 @@ const blogs_sorting_1 = require("../../[A01]blogs/blogs-query/utils/blogs-sortin
 const blogs_paginate_1 = require("../../[A01]blogs/blogs-query/utils/blogs-paginate");
 const db_1 = require("../../repositories/db");
 exports.usersQueryRepository = {
-    getUsers(searchNameTerm, sortBy, sortDirection, pageNumber, pageSize) {
+    getUsers(searchLoginTerm, searchEmailTerm, sortBy, sortDirection, pageNumber, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
-            const findQuery = this.__getUsersFindings(searchNameTerm);
+            const findQuery = this.__getUsersFindings(searchLoginTerm, searchEmailTerm);
             const sortQuery = blogs_sorting_1.blogsSorting.getSorting(sortBy, sortDirection);
             const paginateQuery = blogs_paginate_1.blogsPaginate.getPagination(pageNumber, pageSize);
             let users = yield db_1.usersCollection.find(findQuery).sort(sortQuery).skip(paginateQuery.skip).limit(paginateQuery.limit).toArray();
@@ -53,10 +53,10 @@ exports.usersQueryRepository = {
         delete obj.passwordHash;
         return obj;
     },
-    __getUsersFindings(searchNameTerm) {
+    __getUsersFindings(searchLoginTerm, searchEmailTerm) {
         let findQuery = {};
-        if (searchNameTerm) {
-            findQuery = { $or: [{ login: { $regex: searchNameTerm, $options: 'i' } }, { email: { $regex: searchNameTerm, $options: 'i' } }] };
+        if (searchLoginTerm || searchEmailTerm) {
+            findQuery = { $or: [{ login: { $regex: searchLoginTerm, $options: 'i' } }, { email: { $regex: searchEmailTerm, $options: 'i' } }] };
         }
         return findQuery;
     },

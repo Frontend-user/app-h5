@@ -28,12 +28,13 @@ const usersValidators = [
 exports.usersRouter = (0, express_1.Router)({});
 exports.usersRouter.get('/', auth_validation_1.authorizationMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let searchNameTerm = req.query.searchNameTerm ? String(req.query.searchNameTerm) : undefined;
+        let searchLoginTerm = req.query.searchLoginTerm ? String(req.query.searchLoginTerm) : undefined;
+        let searchEmailTerm = req.query.searchEmailTerm ? String(req.query.searchEmailTerm) : undefined;
         let sortBy = req.query.sortBy ? String(req.query.sortBy) : undefined;
         let sortDirection = req.query.sortDirection ? String(req.query.sortDirection) : undefined;
         let pageNumber = req.query.pageNumber ? Number(req.query.pageNumber) : undefined;
         let pageSize = req.query.pageSize ? Number(req.query.pageSize) : undefined;
-        const blogs = yield users_query_repository_1.usersQueryRepository.getUsers(searchNameTerm, sortBy, sortDirection, pageNumber, pageSize);
+        const blogs = yield users_query_repository_1.usersQueryRepository.getUsers(searchLoginTerm, searchEmailTerm, sortBy, sortDirection, pageNumber, pageSize);
         res.status(http_statuses_1.HTTP_STATUSES.OK_200).send(blogs);
     }
     catch (error) {

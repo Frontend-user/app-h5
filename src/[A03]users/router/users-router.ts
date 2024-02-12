@@ -32,13 +32,14 @@ usersRouter.get('/',
     authorizationMiddleware,
     async (req: Request, res: Response) => {
         try {
-            let searchNameTerm = req.query.searchNameTerm ? String(req.query.searchNameTerm): undefined
+            let searchLoginTerm = req.query.searchLoginTerm ? String(req.query.searchLoginTerm): undefined
+            let searchEmailTerm = req.query.searchEmailTerm ? String(req.query.searchEmailTerm): undefined
             let sortBy = req.query.sortBy ? String(req.query.sortBy): undefined
             let sortDirection= req.query.sortDirection ? String(req.query.sortDirection): undefined
             let pageNumber = req.query.pageNumber ?  Number(req.query.pageNumber): undefined
             let pageSize = req.query.pageSize ?  Number(req.query.pageSize): undefined
 
-            const blogs = await usersQueryRepository.getUsers(searchNameTerm, sortBy, sortDirection, pageNumber,pageSize)
+            const blogs = await usersQueryRepository.getUsers(searchLoginTerm,searchEmailTerm, sortBy, sortDirection, pageNumber,pageSize)
             res.status(HTTP_STATUSES.OK_200).send(blogs)
         } catch (error) {
             console.error('Ошибка при получении данных из коллекции:', error);
