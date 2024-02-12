@@ -30,6 +30,13 @@ exports.usersQueryRepository = {
             }
             pagesCount = Math.ceil(allUsers.length / pageSize);
             const fixArrayIds = users.map((user => this.__changeIdFormat(user)));
+            // type ResponseType = {
+            //     "pagesCount": ,
+            //     "page": pageNumber,
+            //     "pageSize": pageSize,
+            //     "totalCount": allUsers.length,
+            //     "items": fixArrayIds
+            // }
             const response = {
                 "pagesCount": pagesCount,
                 "page": pageNumber,

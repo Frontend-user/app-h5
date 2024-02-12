@@ -26,7 +26,13 @@ export const usersQueryRepository = {
 
 
         const fixArrayIds = users.map((user => this.__changeIdFormat(user)))
-
+        // type ResponseType = {
+        //     "pagesCount": ,
+        //     "page": pageNumber,
+        //     "pageSize": pageSize,
+        //     "totalCount": allUsers.length,
+        //     "items": fixArrayIds
+        // }
         const response = {
             "pagesCount": pagesCount,
             "page": pageNumber,
@@ -41,6 +47,7 @@ export const usersQueryRepository = {
         const getUser = await usersCollection.findOne({_id: userId})
         return getUser ? this.__changeIdFormat(getUser) : false
     },
+
     __changeIdFormat(obj: any) {
         obj.id = obj._id
         delete obj._id
