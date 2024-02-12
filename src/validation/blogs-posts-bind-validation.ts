@@ -1,9 +1,9 @@
 import {body, param, validationResult} from "express-validator";
-import {BlogViewType} from "../types/blog-type";
+import {BlogViewType} from "../common/types/blog-type";
 import {ObjectId} from "mongodb";
 import {NextFunction, Request, Response} from "express";
-import {ErrorType} from "../types/error-type";
-import {blogsQueryRepository} from "../[A01]blogs/blogs-query/blogs-query-repository";
+import {ErrorType} from "../common/types/error-type";
+import {blogsQueryRepository} from "../blogs/blogs-query/blogs-query-repository";
 
 export const postBlogsBindingBlogIdValidation = param('id').trim().isLength({min: 1, max: 300}).withMessage({
     message: 'id is wrong',

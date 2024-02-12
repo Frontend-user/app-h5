@@ -1,10 +1,10 @@
 import {app} from "../../src/app";
 import request from 'supertest'
-import {blogsTestManager} from "../../src/utils/blogsTestManager";
-import {Routes} from "../../src/constants/routes";
-import {BlogUpdateType} from "../../src/types/blog-type";
+import {blogsTestManager} from "../utils/blogsTestManager";
+import {Routes} from "../../src/common/constants/routes";
+import {BlogUpdateType} from "../../src/common/types/blog-type";
 
-describe('/[A01]blogs', () => {
+describe('/blogs', () => {
 
     const token = 'Basic YWRtaW46cXdlcnR5'
 

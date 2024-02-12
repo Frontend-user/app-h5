@@ -1,11 +1,11 @@
 import express, {NextFunction, Request, Response, Router} from 'express'
-import {runDb} from "./repositories/db";
+import {runDb} from "./db";
 import {testRouter} from "./routes/test-router";
 import {blogsPostsBindRouter} from "./routes/blogs-posts-bindings-router";
-import {usersRouter} from "./[A03]users/router/users-router";
-import {blogsRouter} from "./[A01]blogs/router/blogs-router";
-import {postsRouter} from "./[A02]posts/router/posts-router";
-import {authRouter} from "./[A04]auth/auth-router/auth-router";
+import {usersRouter} from "./users/router/users-router";
+import {blogsRouter} from "./blogs/router/blogs-router";
+import {postsRouter} from "./posts/router/posts-router";
+import {authRouter} from "./auth/auth-router/auth-router";
 
 export const app = express()
 const jsonBodyMiddleware = express.json()

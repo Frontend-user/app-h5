@@ -1,11 +1,11 @@
 import {app} from "../../src/app";
 import request from 'supertest'
-import {BlogUpdateType, BlogViewType} from "../../src/types/blog-type";
-import {Routes} from "../../src/constants/routes";
+import {BlogUpdateType, BlogViewType} from "../../src/common/types/blog-type";
+import {Routes} from "../../src/common/constants/routes";
 import any = jasmine.any;
-import {blogsTestManager} from "../../src/utils/blogsTestManager";
+import {blogsTestManager} from "../utils/blogsTestManager";
 
-describe('/[A01]blogs', () => {
+describe('/blogs', () => {
     const token = 'Basic YWRtaW46cXdlcnR5'
 
     beforeAll(async () => {

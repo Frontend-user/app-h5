@@ -22,7 +22,6 @@ const http_statuses_1 = require("../../constants/http-statuses");
 const auth_service_1 = require("../auth-domain/auth-service");
 exports.authRouter = (0, express_1.Router)({});
 exports.authRouter.post('/login', ...authValidators, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // console.log('!!#############')
     try {
         const authData = {
             loginOrEmail: req.body.loginOrEmail,

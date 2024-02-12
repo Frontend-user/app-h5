@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.blogsPostsBindingInputValidationMiddleware = exports.postBlogBindIdExistValidation = exports.postBlogsBindingBlogIdValidation = void 0;
 const express_validator_1 = require("express-validator");
-const blogs_query_repository_1 = require("../[A01]blogs/blogs-query/blogs-query-repository");
+const blogs_query_repository_1 = require("../blogs/blogs-query/blogs-query-repository");
 exports.postBlogsBindingBlogIdValidation = (0, express_validator_1.param)('id').trim().isLength({ min: 1, max: 300 }).withMessage({
     message: 'id is wrong',
     field: 'id'

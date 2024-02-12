@@ -12,13 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.blogsPostBindValidators = exports.blogsPostsBindRouter = void 0;
 const express_1 = require("express");
 const mongodb_1 = require("mongodb");
-const http_statuses_1 = require("../constants/http-statuses");
+const http_statuses_1 = require("../common/constants/http-statuses");
 const auth_validation_1 = require("../validation/auth-validation");
 const posts_validation_1 = require("../validation/posts-validation");
 const blogs_posts_bind_validation_1 = require("../validation/blogs-posts-bind-validation");
-const posts_query_repository_1 = require("../[A02]posts/posts-query/posts-query-repository");
-const posts_service_1 = require("../[A02]posts/domain/posts-service");
-const blogs_query_repository_1 = require("../[A01]blogs/blogs-query/blogs-query-repository");
+const posts_query_repository_1 = require("../posts/posts-query/posts-query-repository");
+const posts_service_1 = require("../posts/domain/posts-service");
+const blogs_query_repository_1 = require("../blogs/blogs-query/blogs-query-repository");
 exports.blogsPostsBindRouter = (0, express_1.Router)({});
 exports.blogsPostBindValidators = [
     auth_validation_1.authorizationMiddleware,

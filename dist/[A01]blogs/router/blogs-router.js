@@ -56,8 +56,8 @@ exports.blogsRouter.post('/', ...blogValidators, (req, res) => __awaiter(void 0,
             name: req.body.name,
             description: req.body.description,
             websiteUrl: req.body.websiteUrl,
-            createdAt: new Date().toISOString(),
-            isMembership: false
+            // createdAt: new Date().toISOString(),
+            // isMembership: false
         };
         const response = yield blogs_service_1.blogsService.createBlog(newBlog);
         if (response) {

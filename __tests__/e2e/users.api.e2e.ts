@@ -1,10 +1,11 @@
 import request from "supertest";
 import {app} from "../../src/app";
-import {Routes} from "../../src/constants/routes";
-import {BlogUpdateType} from "../../src/types/blog-type";
-import {blogsTestManager} from "../../src/utils/blogsTestManager";
-import {UserCreateType, UserInputModelType} from "../../src/[A03]users/types/user-types";
-import {AuthType} from "../../src/[A04]auth/auth-types/auth-types";
+import {Routes} from "../../src/common/constants/routes";
+import {BlogUpdateType} from "../../src/common/types/blog-type";
+// @ts-ignore
+import {blogsTestManager} from "../utils/blogsTestManager";
+import {UserCreateType, UserInputModelType} from "../../src/users/types/user-types";
+import {AuthType} from "../../src/auth/auth-types/auth-types";
 
 describe('/Users', () => {
 

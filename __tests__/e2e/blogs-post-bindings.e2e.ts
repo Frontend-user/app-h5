@@ -1,11 +1,11 @@
 import request from "supertest";
 import {app} from "../../src/app";
-import {BlogUpdateType} from "../../src/types/blog-type";
-import {blogsTestManager} from "../../src/utils/blogsTestManager";
-import {Routes} from "../../src/constants/routes";
-import {PostUpdateType, PostUpdateTypeForBind} from "../../src/types/post-type";
+import {BlogUpdateType} from "../../src/common/types/blog-type";
+import {blogsTestManager} from "../utils/blogsTestManager";
+import {Routes} from "../../src/common/constants/routes";
+import {PostUpdateType, PostUpdateTypeForBind} from "../../src/common/types/post-type";
 
-describe('/[A01]blogs', () => {
+describe('/blogs', () => {
 
     const token = 'Basic YWRtaW46cXdlcnR5'
 

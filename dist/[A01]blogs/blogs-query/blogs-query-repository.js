@@ -20,25 +20,15 @@ exports.blogsQueryRepository = {
         return __awaiter(this, void 0, void 0, function* () {
             const findQuery = blogs_finding_1.blogsFinding.getFindings(searchNameTerm);
             const sortQuery = blogs_sorting_1.blogsSorting.getSorting(sortBy, sortDirection);
-            const paginateQuery = blogs_paginate_1.blogsPaginate.getPagination(pageNumber, pageSize);
-            //
-            let blogs = yield db_1.blogsCollection.find(findQuery).sort(sortQuery).skip(paginateQuery.skip).limit(paginateQuery.limit).toArray();
-            // const allBlogs = await blogsCollection.find({name:{$regex: searchNameTerm, $options: 'i'}}).sort(sortQuery).toArray()
+            const { skip, limit, newPageNumber, newPageSize } = blogs_paginate_1.blogsPaginate.getPagination(pageNumber, pageSize);
+            let blogs = yield db_1.blogsCollection.find(findQuery).sort(sortQuery).skip(skip).limit(limit).toArray();
             const allBlogs = yield db_1.blogsCollection.find(findQuery).sort(sortQuery).toArray();
-            // console.log(allBlogs,'aalk')
-            let pagesCount = 0;
-            if (!pageSize) {
-                pageSize = 10;
-            }
-            if (!pageNumber) {
-                pageNumber = 1;
-            }
-            pagesCount = Math.ceil(allBlogs.length / pageSize);
+            let pagesCount = Math.ceil(allBlogs.length / newPageNumber);
             const fixArrayIds = blogs.map((item => this.__changeIdFormat(item)));
             const response = {
                 "pagesCount": pagesCount,
-                "page": pageNumber,
-                "pageSize": pageSize,
+                "page": newPageNumber,
+                "pageSize": newPageSize,
                 "totalCount": allBlogs.length,
                 "items": fixArrayIds
             };

@@ -1,6 +1,6 @@
 import {Request, Response, Router} from "express";
 import {app} from "../app";
-import {client} from "../repositories/db";
+import {client} from "../db";
 
 export const testRouter = Router({})
 

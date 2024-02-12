@@ -38,8 +38,8 @@ exports.postsQueryRepository = {
                 "items": fixArrayIds
             };
             return response;
-            // const [A02]posts:PostEntityType[] = await postsCollection.find({}).toArray();
-            // const fixArrayIds:PostViewType[] = [A02]posts.map((item => this.__changeIdFormat(item)))
+            // const posts:PostEntityType[] = await postsCollection.find({}).toArray();
+            // const fixArrayIds:PostViewType[] = posts.map((item => this.__changeIdFormat(item)))
             // return fixArrayIds.length > 0 ? fixArrayIds:  []
         });
     },

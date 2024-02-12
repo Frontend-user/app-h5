@@ -20,7 +20,6 @@ exports.authService = {
         return __awaiter(this, void 0, void 0, function* () {
             const isExistLogin = yield auth_repository_1.authRepositories.authUser(authData);
             const res = yield auth_repository_1.authRepositories.getUserHash(authData);
-            // console.log(res,'res')
             if (res && isExistLogin) {
                 const passwordSalt = res.passwordSalt;
                 const passwordHash = res.passwordHash;

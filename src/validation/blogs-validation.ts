@@ -1,6 +1,6 @@
 import {body, check, validationResult} from "express-validator";
 import {NextFunction, Request, Response} from "express";
-import {ErrorType} from "../types/error-type";
+import {ErrorType} from "../common/types/error-type";
 
 const pattern = /^https:\/\/([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*\/?$/
 

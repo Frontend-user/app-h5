@@ -1,5 +1,5 @@
 import express, {NextFunction, Request, Response} from 'express'
-import {client, runDb} from "./repositories/db";
+import {client, runDb} from "./db";
 import {app} from "./app";
 
 const PORT = 3000

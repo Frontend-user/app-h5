@@ -1,7 +1,7 @@
 import {Request, Response, Router} from "express";
-import {PostCreateType, PostViewType} from "../types/post-type";
+import {PostCreateType, PostViewType} from "../common/types/post-type";
 import {ObjectId} from "mongodb";
-import {HTTP_STATUSES} from "../constants/http-statuses";
+import {HTTP_STATUSES} from "../common/constants/http-statuses";
 import {authorizationMiddleware} from "../validation/auth-validation";
 import {
     postBlogIdExistValidation,
@@ -15,10 +15,10 @@ import {
     blogsPostsBindingInputValidationMiddleware,
     postBlogBindIdExistValidation, postBlogsBindingBlogIdValidation,
 } from "../validation/blogs-posts-bind-validation";
-import {BlogViewType} from "../types/blog-type";
-import {postsQueryRepository} from "../[A02]posts/posts-query/posts-query-repository";
-import {postsService} from "../[A02]posts/domain/posts-service";
-import {blogsQueryRepository} from "../[A01]blogs/blogs-query/blogs-query-repository";
+import {BlogViewType} from "../common/types/blog-type";
+import {postsQueryRepository} from "../posts/posts-query/posts-query-repository";
+import {postsService} from "../posts/domain/posts-service";
+import {blogsQueryRepository} from "../blogs/blogs-query/blogs-query-repository";
 
 export const blogsPostsBindRouter = Router({})
 export const blogsPostBindValidators = [
