@@ -11,14 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.blogsPostBindValidators = exports.blogsPostsBindRouter = void 0;
 const express_1 = require("express");
-const posts_service_1 = require("../domain/posts-service");
 const mongodb_1 = require("mongodb");
-const posts_query_repository_1 = require("../query-repositories/posts-query/posts-query-repository");
 const http_statuses_1 = require("../constants/http-statuses");
 const auth_validation_1 = require("../validation/auth-validation");
 const posts_validation_1 = require("../validation/posts-validation");
 const blogs_posts_bind_validation_1 = require("../validation/blogs-posts-bind-validation");
-const blogs_query_repository_1 = require("../query-repositories/blogs-query/blogs-query-repository");
+const posts_query_repository_1 = require("../[A02]posts/posts-query/posts-query-repository");
+const posts_service_1 = require("../[A02]posts/domain/posts-service");
+const blogs_query_repository_1 = require("../[A01]blogs/blogs-query/blogs-query-repository");
 exports.blogsPostsBindRouter = (0, express_1.Router)({});
 exports.blogsPostBindValidators = [
     auth_validation_1.authorizationMiddleware,
@@ -64,7 +64,6 @@ exports.blogsPostsBindRouter.post('/:blogId/posts', ...exports.blogsPostBindVali
     const getBlog = yield blogs_query_repository_1.blogsQueryRepository.getBlogById(req.params.blogId);
     if (getBlog) {
         getBlogName = getBlog.name;
-        console.log(req.params.blogId, 'params');
         let newPost = {
             title: req.body.title,
             shortDescription: req.body.shortDescription,

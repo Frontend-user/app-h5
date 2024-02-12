@@ -11,15 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.blogsPostsBindingInputValidationMiddleware = exports.postBlogBindIdExistValidation = exports.postBlogsBindingBlogIdValidation = void 0;
 const express_validator_1 = require("express-validator");
-const blogs_query_repository_1 = require("../query-repositories/blogs-query/blogs-query-repository");
+const blogs_query_repository_1 = require("../[A01]blogs/blogs-query/blogs-query-repository");
 exports.postBlogsBindingBlogIdValidation = (0, express_validator_1.param)('id').trim().isLength({ min: 1, max: 300 }).withMessage({
     message: 'id is wrong',
     field: 'id'
 });
 exports.postBlogBindIdExistValidation = (0, express_validator_1.param)('blogId').custom((value, { req }) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(value, 'value');
     const isExistBlogId = yield blogs_query_repository_1.blogsQueryRepository.getBlogById(value);
-    console.log(isExistBlogId, 'isExistBlogId');
     if (isExistBlogId) {
         return true;
     }
@@ -34,10 +32,8 @@ const blogsPostsBindingInputValidationMiddleware = (req, res, next) => {
     const errors = (0, express_validator_1.validationResult)(req).array({ onlyFirstError: true });
     if (errors.length) {
         let errorsForClient = [];
-        console.log(errors, 'errors');
         for (const error of errors) {
             errorsForClient.push(error.msg);
-            console.log(error, 'error.msg.name');
             if (error.msg.field === 'blogId') {
                 res.sendStatus(404);
                 return;

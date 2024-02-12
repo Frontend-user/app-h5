@@ -1,9 +1,8 @@
 
-import {blogsQueryRepository} from "../query-repositories/blogs-query/blogs-query-repository";
 import {body, check, validationResult, ValidationError} from "express-validator";
 import {ObjectId} from "mongodb";
 import {BlogViewType} from "../types/blog-type";
-import {blogsService} from "../domain/blogs-service";
+import {blogsQueryRepository} from "../[A01]blogs/blogs-query/blogs-query-repository";
 
 export const postTitleValidation = body('title').trim().isLength({min: 4, max: 30}).withMessage({
     message: 'title is wrong',

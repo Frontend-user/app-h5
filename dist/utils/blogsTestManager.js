@@ -37,10 +37,10 @@ exports.blogsTestManager = {
     arraySort(arrayToSort, sortBy, sortDirection) {
         return arrayToSort.slice().sort((a, b) => {
             if (a[sortBy] < b[sortBy]) {
-                return sortDirection === 'asc' ? 1 : -1;
+                return sortDirection === 'asc' ? -1 : 1;
             }
             else if (a[sortBy] > b[sortBy]) {
-                return sortDirection === 'asc' ? -1 : 1;
+                return sortDirection === 'asc' ? 1 : -1;
             }
             else {
                 return 0;

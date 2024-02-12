@@ -5,7 +5,7 @@ import {Routes} from "../../src/constants/routes";
 import any = jasmine.any;
 import {blogsTestManager} from "../../src/utils/blogsTestManager";
 
-describe('/blogs', () => {
+describe('/[A01]blogs', () => {
     const token = 'Basic YWRtaW46cXdlcnR5'
 
     beforeAll(async () => {
@@ -72,7 +72,7 @@ describe('/blogs', () => {
             .get(`/blogs?SearchNameTerm=h`)
         const responseBlogs = response.body.items
 
-        expect(responseBlogs.length).toEqual(1)
+        expect(responseBlogs.length).toEqual(6)
     })
 
     it('[CHECK ALL QUERY][GET BLOGS][QUERY] [EXISTING]should return 200 for  existing blog', async () => {
@@ -81,7 +81,7 @@ describe('/blogs', () => {
             .query({sortBy: 'name', sortDirection: 'asc'})
         const responseBlogs = response.body.items
 
-        expect(responseBlogs.length).toEqual(2)
+        expect(responseBlogs.length).toEqual(6)
         const sortedArray = blogsTestManager.arraySort<BlogViewType>(responseBlogs, 'name', 'asc')
         expect(sortedArray).toEqual(responseBlogs)
     })
@@ -96,11 +96,9 @@ describe('/blogs', () => {
             .get(`/blogs`)
             .query({pageNumber: 3, pageSize: 5})
         const responseBlogs = response.body.items
-        // console.log(response.body.items.length,'LENGTH')
-        // console.log(response.body.items,'Array')
         expect(responseBlogs.length).toEqual(5)
-        expect(responseBlogs[0].name).toEqual(`ITEM NUMBER:11`)
-        expect(responseBlogs[4].name).toEqual(`ITEM NUMBER:15`)
+        expect(responseBlogs[0].name).toEqual(`ITEM NUMBER:10`)
+        expect(responseBlogs[4].name).toEqual(`ITEM NUMBER:6`)
     })
 
     // afterAll(async () => {

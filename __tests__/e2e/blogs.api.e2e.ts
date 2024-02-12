@@ -4,7 +4,7 @@ import {blogsTestManager} from "../../src/utils/blogsTestManager";
 import {Routes} from "../../src/constants/routes";
 import {BlogUpdateType} from "../../src/types/blog-type";
 
-describe('/blogs', () => {
+describe('/[A01]blogs', () => {
 
     const token = 'Basic YWRtaW46cXdlcnR5'
 
@@ -15,7 +15,7 @@ describe('/blogs', () => {
     it('API[GET BLOGS] [EXPECT 200 [] ]IS DELETE? should return 200 and empty array', async () => {
         await request(app)
             .get('/blogs')
-            .expect(200,  { pagesCount: 0, pageSize: 0, totalCount: 0, items: []})
+            .expect(200,  { pagesCount: 0, page: 1, pageSize: 10, totalCount: 0, items: []})
     })
     //
     it('[CREATE BLOG] [CORRECT DATA] should return 201 for create new blog', async () => {

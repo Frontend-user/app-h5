@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postIdValidation = exports.postBlogIdExistValidation = exports.postBlogIdValidation = exports.postContentValidation = exports.postDescValidation = exports.postTitleValidation = void 0;
-const blogs_query_repository_1 = require("../query-repositories/blogs-query/blogs-query-repository");
 const express_validator_1 = require("express-validator");
 const mongodb_1 = require("mongodb");
+const blogs_query_repository_1 = require("../[A01]blogs/blogs-query/blogs-query-repository");
 exports.postTitleValidation = (0, express_validator_1.body)('title').trim().isLength({ min: 4, max: 30 }).withMessage({
     message: 'title is wrong',
     field: 'title'

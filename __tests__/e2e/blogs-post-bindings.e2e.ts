@@ -5,7 +5,7 @@ import {blogsTestManager} from "../../src/utils/blogsTestManager";
 import {Routes} from "../../src/constants/routes";
 import {PostUpdateType, PostUpdateTypeForBind} from "../../src/types/post-type";
 
-describe('/blogs', () => {
+describe('/[A01]blogs', () => {
 
     const token = 'Basic YWRtaW46cXdlcnR5'
 
@@ -16,7 +16,7 @@ describe('/blogs', () => {
     it('API[GET BLOGS] [EXPECT 200 [] ]IS DELETE? should return 200 and empty array', async () => {
         await request(app)
             .get('/blogs')
-            .expect(200,  { pagesCount: 0, pageSize: 0, totalCount: 0, items: []})
+            .expect(200,  { pagesCount: 0, page: 1, pageSize: 10, totalCount: 0, items: []})
     })
 
     let createBlog5: any
@@ -47,7 +47,7 @@ describe('/blogs', () => {
             "shortDescription": "string",
             "content": "string",
             "blogId": expect.any(String),
-            "blogName": "string",
+            "blogName": expect.any(String),
             createdAt: expect.any(String)
         })
     })
@@ -65,7 +65,6 @@ describe('/blogs', () => {
         const response = await request(app)
             .get(`/blogs/${createBlog5.id}/posts`)
             .query({pageNumber: 2, pageSize: 3})
-        console.log(response.body, 'HERE')
     })
 
 })

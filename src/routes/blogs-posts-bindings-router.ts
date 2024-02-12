@@ -1,10 +1,7 @@
 import {Request, Response, Router} from "express";
 import {PostCreateType, PostViewType} from "../types/post-type";
-import {postsService} from "../domain/posts-service";
 import {ObjectId} from "mongodb";
-import {postsQueryRepository} from "../query-repositories/posts-query/posts-query-repository";
 import {HTTP_STATUSES} from "../constants/http-statuses";
-import {postValidators} from "./posts-router";
 import {authorizationMiddleware} from "../validation/auth-validation";
 import {
     postBlogIdExistValidation,
@@ -19,7 +16,9 @@ import {
     postBlogBindIdExistValidation, postBlogsBindingBlogIdValidation,
 } from "../validation/blogs-posts-bind-validation";
 import {BlogViewType} from "../types/blog-type";
-import {blogsQueryRepository} from "../query-repositories/blogs-query/blogs-query-repository";
+import {postsQueryRepository} from "../[A02]posts/posts-query/posts-query-repository";
+import {postsService} from "../[A02]posts/domain/posts-service";
+import {blogsQueryRepository} from "../[A01]blogs/blogs-query/blogs-query-repository";
 
 export const blogsPostsBindRouter = Router({})
 export const blogsPostBindValidators = [
@@ -74,7 +73,6 @@ blogsPostsBindRouter.post('/:blogId/posts',
         const getBlog:BlogViewType|boolean =  await blogsQueryRepository.getBlogById( req.params.blogId)
         if(getBlog){
             getBlogName = getBlog.name
-        console.log(req.params.blogId, 'params')
         let newPost: PostCreateType = {
             title: req.body.title,
             shortDescription: req.body.shortDescription,

@@ -1,9 +1,9 @@
 import {body, param, validationResult} from "express-validator";
 import {BlogViewType} from "../types/blog-type";
-import {blogsQueryRepository} from "../query-repositories/blogs-query/blogs-query-repository";
 import {ObjectId} from "mongodb";
 import {NextFunction, Request, Response} from "express";
 import {ErrorType} from "../types/error-type";
+import {blogsQueryRepository} from "../[A01]blogs/blogs-query/blogs-query-repository";
 
 export const postBlogsBindingBlogIdValidation = param('id').trim().isLength({min: 1, max: 300}).withMessage({
     message: 'id is wrong',
@@ -11,9 +11,7 @@ export const postBlogsBindingBlogIdValidation = param('id').trim().isLength({min
 })
 
 export const postBlogBindIdExistValidation = param('blogId').custom(async (value, {req}) => {
-    console.log(value,'value')
     const isExistBlogId: BlogViewType | boolean = await blogsQueryRepository.getBlogById(value)
-    console.log(isExistBlogId,'isExistBlogId')
 
     if (isExistBlogId) {
         return true
@@ -29,10 +27,8 @@ export const blogsPostsBindingInputValidationMiddleware = (req: Request, res: Re
     const errors = validationResult(req).array({onlyFirstError:true})
     if (errors.length) {
         let errorsForClient:ErrorType[] = []
-        console.log(errors,'errors')
         for (const error of errors) {
             errorsForClient.push(error.msg)
-            console.log(error,'error.msg.name')
             if(error.msg.field=== 'blogId'){
                 res.sendStatus(404)
                 return;

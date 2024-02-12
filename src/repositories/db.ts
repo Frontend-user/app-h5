@@ -3,6 +3,7 @@ import {BlogCreateType, BlogEntityType} from "../types/blog-type";
 
 import dotenv from 'dotenv'
 import {PostCreateType, PostEntityType} from "../types/post-type";
+import {UserCreateType, UserHashType} from "../[A03]users/types/user-types";
 dotenv.config()
 
 const url = process.env.MONGO_URL
@@ -17,6 +18,7 @@ console.log('url',url)
 export const client = new MongoClient(url)
 export const blogsCollection = client.db('db').collection<BlogEntityType | BlogCreateType>('blogs')
 export const postsCollection = client.db('db').collection<PostEntityType | PostCreateType>('posts')
+export const usersCollection = client.db('db').collection<UserHashType>('users')
 
 export const  runDb = async () =>{
     try {
